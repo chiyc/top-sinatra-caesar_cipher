@@ -4,8 +4,10 @@ require './cipher_function'
 get '/' do
   input = params['string']
   shift = params['shift'].to_i
-  cipher = caesar_cipher(input, shift)
-  message = output(input, shift, cipher)
+  if !input.nil?
+    cipher = caesar_cipher(input, shift)
+    message = output(input, shift, cipher)
+  end
   erb :index, :locals => { :input => input, :shift => shift, :cipher => cipher, :message => message}
 end
 
